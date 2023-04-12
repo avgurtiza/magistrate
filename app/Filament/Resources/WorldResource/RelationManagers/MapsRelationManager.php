@@ -42,11 +42,8 @@ class MapsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()->mutateFormDataUsing(function (array $data) {
-                    $data['user_id'] = auth()->id();
-
-                    return $data;
-                }),
+                // Tables\Actions\CreateAction::make(),
+                Tables\Actions\AttachAction::make()->preloadRecordSelect(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

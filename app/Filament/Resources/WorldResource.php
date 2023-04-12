@@ -18,6 +18,7 @@ class WorldResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-globe';
 
     protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -48,6 +49,9 @@ class WorldResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+            ])
+
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
@@ -61,7 +65,7 @@ class WorldResource extends Resource
     {
         return [
             RelationManagers\MapsRelationManager::class,
-            RelationManagers\GamesRelationManager::class
+            RelationManagers\GamesRelationManager::class,
         ];
     }
 

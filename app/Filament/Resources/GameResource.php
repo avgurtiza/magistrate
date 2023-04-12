@@ -10,8 +10,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GameResource extends Resource
 {
@@ -20,6 +18,7 @@ class GameResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-sparkles';
 
     protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -37,7 +36,7 @@ class GameResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -60,7 +59,7 @@ class GameResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\WorldsRelationManager::class
+            RelationManagers\WorldsRelationManager::class,
         ];
     }
 

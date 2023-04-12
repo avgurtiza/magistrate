@@ -11,7 +11,12 @@ class Game extends Model
 
     protected $fillable = ['user_id', 'name', 'description', 'recommended_player_count'];
 
-    public function worlds() {
+    public function worlds()
+    {
         return $this->belongsToMany(World::class, 'game_worlds');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
