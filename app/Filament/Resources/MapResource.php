@@ -46,13 +46,6 @@ class MapResource extends Resource
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('recommended_player_count'),
                 Tables\Columns\TextColumn::make('user.name'),
-                /*
-                Tables\Columns\TextColumn::make('metadata'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                */
             ])
             ->filters([
                 //
