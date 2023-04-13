@@ -32,4 +32,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/builder/{map}', \App\Http\Livewire\MapBuilder::class)->name('map-builder');
 });
