@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Game extends Model
 {
@@ -11,12 +13,17 @@ class Game extends Model
 
     protected $fillable = ['user_id', 'name', 'description', 'recommended_player_count'];
 
-    public function worlds()
+    public function worlds(): BelongsToMany
     {
         return $this->belongsToMany(World::class, 'game_worlds');
     }
 
-    public function user() {
+    public function maps() {
+
+    }
+
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 }

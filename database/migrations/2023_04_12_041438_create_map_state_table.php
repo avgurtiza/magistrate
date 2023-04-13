@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('map_state', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
+            // $table->unsignedBigInteger('world_id');
             $table->unsignedBigInteger('map_id');
             $table->json('metadata');
             $table->timestamps();
 
-            $table->foreign('game_id')->references('id')->on('games');
-            $table->foreign('map_id')->references('id')->on('maps');
+            // $table->foreign('game_id')->references('id')->on('games');
+            // $table->foreign('world_id')->references('id')->on('worlds');
+            // $table->foreign('map_id')->references('id')->on('maps');
         });
     }
 

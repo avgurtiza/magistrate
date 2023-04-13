@@ -21,14 +21,21 @@ class MapsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\Textarea::make('description')
-                    ->required()
                     ->maxLength(65535),
-                Forms\Components\TextInput::make('recommended_player_count')
-                    ->numeric()
-                    ->maxValue(9000)
-                    ->minValue(0)
-                    ->required(),
+
+                Forms\Components\Select::make('recommended_player_count')
+                    ->required()
+                    ->options(range(1, 20)),
+
+                Forms\Components\Select::make('rows')
+                    ->required()
+                    ->options(array_combine(range(5, 20), range(5, 20))),
+
+                Forms\Components\Select::make('columns')
+                    ->required()
+                    ->options(array_combine(range(5, 20), range(5, 20))),
             ]);
     }
 
@@ -37,13 +44,20 @@ class MapsRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('recommended_player_count')->label('Players'),
+                Tables\Columns\TextColumn::make('rows'),
+                Tables\Columns\TextColumn::make('columns'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                // Tables\Actions\CreateAction::make(),
-                Tables\Actions\AttachAction::make()->preloadRecordSelect(),
+                Tables\Actions\CreateAction::make()->mutateFormDataUsing(function (array $data): array {
+                    $data['user_id'] = auth()->id();
+
+                    return $data;
+                }),
+                // Tables\Actions\AttachAction::make()->preloadRecordSelect(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -53,4 +67,6 @@ class MapsRelationManager extends RelationManager
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
+
+
 }

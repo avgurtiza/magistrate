@@ -10,7 +10,7 @@ class Map extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'world_id', 'name', 'description', 'recommended_player_count'];
+    protected $fillable = ['user_id', 'world_id', 'name', 'description', 'recommended_player_count', 'rows', 'columns'];
 
     public function user(): BelongsTo
     {

@@ -17,7 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('world_id');
 
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
+
+            $table->unsignedTinyInteger('rows');
+            $table->unsignedTinyInteger('columns');
 
             $table->integer('recommended_player_count');
             $table->json('metadata')->nullable();
